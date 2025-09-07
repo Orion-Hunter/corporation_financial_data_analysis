@@ -1,0 +1,52 @@
+version: 2
+seeds: 
+  - name: titulos
+    config:
+      schema: bronze
+      column_types:
+        NUMERO: varchar
+        CODIGO_LOJA: bigint
+        ORIGEM: varchar
+        CLIENTE: varchar
+        DEPARTAMENTO: varchar
+        EMISSAO: varchar
+        PAGAMENTO: varchar
+        SALDO: numeric
+        SITUACAO: varchar
+        TIPO_DE_LANCAMENTO: varchar
+        TIPO_MOVIMENTACAO: varchar
+        VALOR: numeric
+        VENCIMENTO: varchar
+        CANCELAMENTO: varchar
+  
+  - name: lojas
+    config:
+      schema: bronze
+      column_types:
+        CODIGO_LOJA: bigint
+        NOME_FANTASIA: varchar
+        MARCA: varchar
+        CIDADE: varchar
+  
+  - name: departamentos
+    config:
+      schema: bronze
+      column_types:
+        DEPARTAMENTO: bigint
+        NOME: varchar
+        IDENTIFICACAO: varchar
+  
+  - name: clientes
+    config:
+      schema: bronze
+      column_types:
+        CODIGO: varchar
+        DATA_PRIMEIRO_VALOR_GERADO: varchar 
+        DATA_ULTIMO_VALOR_GERADO: varchar
+        FISJUR: varchar
+        PRIMEIRA_FATURA_VALOR: numeric
+        ULTIMA_COMPRA: numeric
+        ULTIMA_FATURA_VALOR: numeric
+        ULTIMA_OPERACAO: varchar
+        NOME: varchar
+  

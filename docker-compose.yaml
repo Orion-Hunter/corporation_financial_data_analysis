@@ -1,0 +1,28 @@
+services:
+  database:
+    image: postgres:15
+    container_name: fin_data
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - financial_data:/var/lib/postgresql/data
+      - financial_data_backup:/home/database_backup
+    environment:
+      POSTGRES_DB: fin_data
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      TZ: 'America/Sao_Paulo'
+
+    networks:
+      - pipeline_network
+  
+volumes:
+   financial_data:
+   financial_data_backup:
+
+
+networks:
+  pipeline_network:
+    driver: bridge
+  
