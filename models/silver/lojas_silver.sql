@@ -4,7 +4,7 @@ SELECT
 "CODIGO_LOJA",
 "NOME_FANTASIA",
 "CIDADE",
-COALESCE("MARCA", '-') MARCA
+COALESCE("MARCA", '-') as MARCA
 FROM {{ ref('lojas') }}
 
 
