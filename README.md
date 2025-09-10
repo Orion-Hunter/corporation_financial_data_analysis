@@ -1,42 +1,43 @@
-📊 Projeto de Modelagem de Dados com dbt
-📌 Visão Geral
+# 📊 Projeto de Modelagem de Dados com dbt
 
-Breve descrição do projeto:
+## 📌 Visão Geral
 
-Objetivo: construir camadas Bronze → Silver → Gold para disponibilizar um modelo estrela pronto para análises financeiras.
+**Objetivo:** construir camadas **Bronze → Silver → Gold** para disponibilizar um **modelo estrela** pronto para análises financeiras.
 
-Fonte: arquivos CSV como fonte original (seeds na camada Bronze).
+* **Fonte:** arquivos CSV (seeds na camada Bronze).
+* **Output:** tabelas Gold modeladas em **star schema** e dashboards com indicadores financeiros como:
 
-Output: tabelas Gold modeladas em star schema e dashboards com indicadores financeiros (DMR — Dias Médios de Recebimento, Aging, Taxa de Inadimplência, Índice de Concentração de Clientes, etc.).
+  * 📈 Dias Médios de Recebimento (DMR)
+  * 📊 Aging
+  * 💸 Taxa de Inadimplência
+  * 👥 Índice de Concentração de Clientes
 
-🏗️ Arquitetura
+---
 
-Arquitetura em Medallion (Bronze / Silver / Gold):
+## 🏗️ Arquitetura
 
-Bronze: ingestão de arquivos CSV brutos (seeds). Mantém cópia fiel dos dados de origem.
+**Arquitetura Medallion (Bronze / Silver / Gold):**
 
-Silver: limpeza, cast de tipos, normalizações e deduplicações.
+* 🟤 **Bronze** → ingestão de arquivos CSV brutos (seeds). Mantém cópia fiel dos dados de origem.
+* ⚪ **Silver** → limpeza, cast de tipos, normalizações e deduplicações.
+* 🟡 **Gold** → modelos prontos para consumo analítico (**star schema** — fatos e dimensões).
 
-Gold: modelos prontos para consumo analítico (star schema — fatos e dimensões).
+**Ferramentas envolvidas:**
 
-Ferramentas:
+* 🟦 **dbt** — modelagem e ingestão
+* 🐘 **Postgres** — Data Lake / Data Warehouse (DataLakehouse)
+* 🐳 **Docker** — ambiente local reproducível
+* 📊 **Power BI** — camada de visualização e análise
 
-dbt — modelagem e ingestão.
+---
 
-Postgres — Data Lake / Data Warehouse (DataLakehouse).
+## 📂 Estrutura do Projeto (exemplo)
 
-Docker — ambiente local reproducível.
-
-Power BI — consumirão a camada Gold.
-
-📂 Estrutura do Projeto (exemplo)
+```
 .
 ├── models/
 │   ├── gold/
-│   │   ├── marts/
-│   │   └── dim_*.sql
 │   ├── silver/
-│   │   └── staging_*.sql
 ├── seeds/
 │   └── bronze/
 │       ├── clientes.csv
@@ -47,32 +48,38 @@ Power BI — consumirão a camada Gold.
 ├── dbt_project.yml
 ├── packages.yml
 └── README.md
+```
 
-⚙️ Requisitos (locais)
+---
 
-Docker & Docker Compose
+## ⚙️ Requisitos (locais)
 
-dbt-core + adapter (ex.: dbt-postgres) se for rodar local sem container
+* 🐳 Docker & Docker Compose
+* 🟦 `dbt-core` + adapter (ex.: `dbt-postgres`) se rodar local sem container
+* 🐍 Python 3.8+ (se usar scripts auxiliares)
+* 🌱 Git
 
-Python 3.8+ (se usar scripts auxiliares)
+---
 
-Git
-
-🧩 Seeds (Bronze)
-
-Coloque os CSVs em seeds/bronze/.
-
-Configure tipos no schema.yml para seeds (ex.: column_types) para garantir cast correto na carga.
+## 🧩 Seeds (Bronze)
 
 Exemplo de comando para carregar seeds:
 
+```bash
 dbt seed --select titulos
+```
 
-📊 Documentação (dbt docs)
+---
 
-Documente modelos e colunas em schema.yml com description.
+## 📊 Documentação (dbt docs)
 
-Gerar e servir:
+* Documente modelos e colunas em `schema.yml` com `description`.
 
+Gerar e servir a documentação:
+
+```bash
 dbt docs generate
 dbt docs serve
+```
+
+---
