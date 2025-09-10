@@ -41,4 +41,4 @@ dtipolancamento.tipo_de_lancamento = silver.titulos_silver.tipo_de_lancamento
 valor
 FROM silver.titulos_silver
 WHERE
-tipo_movimentacao='RECEBIMENTO' 
+tipo_movimentacao='PAGAMENTO' 

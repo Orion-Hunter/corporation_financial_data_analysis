@@ -3,3 +3,4 @@ target
 .user.yml
 README.md
 logs
+dbt_packages
