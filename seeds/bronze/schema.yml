@@ -1,6 +1,7 @@
 version: 2
 seeds: 
   - name: titulos
+    description: "Model para registrar as operações financeiras."
     config:
       schema: bronze
       column_types:
@@ -18,8 +19,68 @@ seeds:
         VALOR: numeric
         VENCIMENTO: varchar
         CANCELAMENTO: varchar
-  
+
+    columns:
+      - name: NUMERO
+        data_type: character varying
+        description: "Número Identificador do Título. Pode se repetir. Quando há repetição significa que ou o são título vinculados à clientes e/ou lojas diferentes ou são títulos parcelados."
+      
+      - name: CODIGO_LOJA 
+        data_type: bigint
+        description: "Código Identificador da empresa emissora do título."
+      
+      - name: ORIGEM 
+        data_type: character varying
+        description: "Dados sem valor para análises e modelagens. Removido na camada Silver."
+      
+      - name: CLIENTE
+        data_type: character varying
+        description: "Código identificador do cliente ou fornecedor vinculado ao título."
+      
+      - name: DEPARTAMENTO
+        data_type: character varying
+        description: "Código do Departamento que gerou o título."
+      
+      - name: EMISSAO
+        data_type: character varying
+        description: "Data de Emissão do Título."
+      
+      - name: PAGAMENTO
+        data_type: character varying
+        description: "Data de Pagamento/Recebimento do Título."
+
+      - name: SALDO 
+        data_type: numeric
+        description: "Valor residual. Será removido na camada Silver."
+
+      - name: SITUACAO
+        data_type: character varying
+        description: "Status do Título"
+
+      - name: TIPO_DE_LANCAMENTO
+        data_type: character varying
+        description: "Categoria do Título"
+
+      - name: TIPO_MOVIMENTACAO
+        data_type: character varying
+        description: "Campo categórico informa se o título é um movimento de entrada(Recebimento) ou saída(Pagamento)."
+
+      - name: VALOR 
+        data_type: numeric
+        description: "Campo numérico que infomra Valor do Título."
+
+      - name: VENCIMENTO
+        data_type: character varying
+        description: 'Data de Vencimento do Título.'   
+
+      - name: CANCELAMENTO
+        data_type: character varying
+        description: 'Data de Cancelamento do Título.'   
+
+      
+
   - name: lojas
+    description: "Model para os dados de empresas."
     config:
       schema: bronze
       column_types:
@@ -27,16 +88,48 @@ seeds:
         NOME_FANTASIA: varchar
         MARCA: varchar
         CIDADE: varchar
+
+    columns:
+      - name: CODIGO_LOJA
+        data_type: bigint
+        description: "Código identificador da empresa."
+
+      - name: NOME_FANTASIA
+        data_type: character varying
+        description: "Nome Fantasia da empresa."
+
+      - name: MARCA
+        data_type: character varying
+        description: "Marca que a empresa atende. Na ausência de uma marca, significa que trata-se de uma empresa administrativa."
+
+      - name: CIDADE
+        data_type: character varying
+        description: "Localização da Empresa."
   
   - name: departamentos
+    description: "Model para departamentos geradores de transações."
     config:
       schema: bronze
       column_types:
         DEPARTAMENTO: bigint
         NOME: varchar
         IDENTIFICACAO: varchar
+    
+    columns:
+      - name: DEPARTAMENTO
+        data_type: bigint
+        description: "Código do Departamento."
+
+      - name: NOME
+        data_type: character varying
+        description: "Descrição do Departamento."
+
+      - name: IDENTIFICACAO
+        data_type: character varying
+        description: "Categoria do Departamento."
   
   - name: clientes
+    description: "Dados de Clientes."
     config:
       schema: bronze
       column_types:
@@ -49,4 +142,40 @@ seeds:
         ULTIMA_FATURA_VALOR: numeric
         ULTIMA_OPERACAO: varchar
         NOME: varchar
-  
+    
+    columns:
+      - name: CODIGO
+        data_type: character varying
+        description: "Código Identificador do Cliente."
+
+      - name: data_primeiro_valor_gerado
+        data_type: character varying
+        description: "Data da primeira transação realizada."
+
+      - name: data_ultimo_valor_gerado
+        data_type: character varying
+        description: "Data da última transação realizada."
+
+      - name: fisjur
+        data_type: character varying
+        description: "Personalidade Jurídica."
+
+      - name: primeira_fatura_valor
+        data_type: numeric
+        description: "Valor da primeira transação realizada."
+
+      - name: ultima_compra
+        data_type: numeric
+        description: "Valor da última transação de compra realizada."
+
+      - name: ultima_fatura_valor
+        data_type: numeric
+        description: "Valor da última transação realizada."
+
+      - name: ultima_operacao
+        data_type: character varying
+        description: "Data da última operação realizada."
+
+      - name: nome
+        data_type: character varying
+        description: "Nome do Cliente."

@@ -1,0 +1,167 @@
+version: 2
+
+models:
+  - name: dim_clientes
+    description: "Model para a tabela dimensão de clientes"
+    columns:
+      - name: cliente
+        data_type: integer
+        description: ""
+
+      - name: nome
+        data_type: character varying
+        description: ""
+
+      - name: tipo_pessoa
+        data_type: character varying
+        description: ""
+
+  - name: dim_departamentos
+    description: "Model para a tabela dimensão de departamentos"
+    columns:
+      - name: departamento
+        data_type: bigint
+        description: ""
+
+      - name: nome
+        data_type: character varying
+        description: ""
+
+      - name: identificacao
+        data_type: character varying
+        description: ""
+
+  - name: dim_lojas
+    description: "Model para a dimensão de lojas"
+    columns:
+      - name: codigo
+        data_type: bigint
+        description: ""
+
+      - name: nome_fantasia
+        data_type: character varying
+        description: ""
+
+      - name: cidade
+        data_type: character varying
+        description: ""
+
+      - name: marca
+        data_type: text
+        description: ""
+
+  - name: dim_situacao
+    description: "Model para a dimensão de situação"
+    columns:
+      - name: codigo
+        data_type: text
+        description: ""
+
+      - name: situacao
+        data_type: character varying
+        description: ""
+
+  - name: dim_tipo_lancamento
+    description: "Model para a dimensão de Tipo de Lançamento"
+    columns:
+      - name: codigo
+        data_type: text
+        description: ""
+
+      - name: tipo_de_lancamento
+        data_type: character varying
+        description: ""
+
+  - name: fat_titulos_pagamentos
+    description: "Model para a tabela fato de operações de pagamento."
+    columns:
+      - name: numero
+        data_type: bigint
+        description: ""
+
+      - name: loja_codigo
+        data_type: bigint
+        description: ""
+
+      - name: cliente_codigo
+        data_type: integer
+        description: ""
+
+      - name: departamento_codigo
+        data_type: integer
+        description: ""
+
+      - name: emissao
+        data_type: date
+        description: ""
+
+      - name: pagamento
+        data_type: date
+        description: ""
+
+      - name: cancelamento
+        data_type: date
+        description: ""
+
+      - name: vencimento
+        data_type: date
+        description: ""
+
+      - name: situacao_codigo
+        data_type: text
+        description: ""
+
+      - name: tipo_de_lancamento_codigo
+        data_type: text
+        description: ""
+
+      - name: valor
+        data_type: double precision
+        description: ""
+
+  - name: fat_titulos_recebimentos
+    description: "Model para a tabela fato de operações de recebimento"
+    columns:
+      - name: numero
+        data_type: bigint
+        description: ""
+
+      - name: loja_codigo
+        data_type: bigint
+        description: ""
+
+      - name: cliente_codigo
+        data_type: integer
+        description: ""
+
+      - name: departamento_codigo
+        data_type: integer
+        description: ""
+
+      - name: emissao
+        data_type: date
+        description: ""
+
+      - name: pagamento
+        data_type: date
+        description: ""
+
+      - name: cancelamento
+        data_type: date
+        description: ""
+
+      - name: vencimento
+        data_type: date
+        description: ""
+
+      - name: situacao_codigo
+        data_type: text
+        description: ""
+
+      - name: tipo_de_lancamento_codigo
+        data_type: text
+        description: ""
+
+      - name: valor
+        data_type: double precision
+        description: ""

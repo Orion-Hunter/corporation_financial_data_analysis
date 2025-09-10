@@ -1,0 +1,125 @@
+version: 2
+models:
+  - name: clientes_silver
+    description: "Clientes Model"
+    columns:
+      - name: cliente
+        data_type: integer
+        description: "Código identificador do cliente."
+
+      - name: nome
+        data_type: character varying
+        description: "Nome do Cliente."
+
+      - name: data_primeiro_valor_gerado
+        data_type: date
+        description: "Data da primeira transação com valor realizada."
+
+      - name: data_ultimo_valor_gerado
+        data_type: date
+        description: "Data da última transação com valor realizada."
+
+      - name: fisjur
+        data_type: character varying
+        description: "Personalidade Jurídica."
+
+      - name: primeira_fatura_valor
+        data_type: double precision
+        description: "Valor da primeira transação."
+
+      - name: ultima_compra
+        data_type: double precision
+        description: "Valor da Última transação de compra."
+
+      - name: ultima_fatura_valor
+        data_type: double precision
+        description: "Valor da última transação."
+
+      - name: ultima_operacao
+        data_type: date
+        description: "Data da última operação."
+
+  - name: departamentos_silver
+    description: "Departamentos Model"
+    columns:
+      - name: departamento
+        data_type: bigint
+        description: ""
+
+      - name: nome
+        data_type: character varying
+        description: ""
+
+      - name: identificacao
+        data_type: character varying
+        description: ""
+
+  - name: lojas_silver
+    description: "Empresas Model"
+    columns:
+      - name: codigo_loja
+        data_type: bigint
+        description: ""
+
+      - name: nome_fantasia
+        data_type: character varying
+        description: ""
+
+      - name: cidade
+        data_type: character varying
+        description: ""
+
+      - name: marca
+        data_type: character varying
+        description: ""
+
+  - name: titulos_silver
+    description: "Titulos Model"
+    columns:
+      - name: numero
+        data_type: bigint
+        description: ""
+
+      - name: codigo_loja
+        data_type: bigint
+        description: ""
+
+      - name: cliente
+        data_type: integer
+        description: ""
+
+      - name: departamento
+        data_type: integer
+        description: ""
+
+      - name: dta_emissao
+        data_type: timestamp with time zone
+        description: ""
+
+      - name: dta_pagamento
+        data_type: timestamp with time zone
+        description: ""
+
+      - name: situacao
+        data_type: character varying
+        description: ""
+
+      - name: tipo_de_lancamento
+        data_type: character varying
+        description: ""
+
+      - name: tipo_movimentacao
+        data_type: character varying
+        description: ""
+
+      - name: valor
+        data_type: double precision
+        description: ""
+
+      - name: dta_cancelamento
+        data_type: timestamp with time zone
+        description: ""
+
+      - name: dta_vencimento
+        data_type: timestamp with time zone
+        description: ""
