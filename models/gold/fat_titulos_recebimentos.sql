@@ -7,9 +7,17 @@ WITH base AS (
         cliente AS cliente_codigo,
         departamento AS departamento_codigo,
         DATE(dta_emissao) AS emissao,
-        DATE(COALESCE(dta_pagamento, '2100-01-01')) AS pagamento, 
+        CASE 
+            WHEN situacao != 'Aberto' then DATE(COALESCE(dta_pagamento, '2100-01-01'))
+            else DATE(dta_pagamento)
+        END pagamento,
         DATE(dta_cancelamento) AS cancelamento,
         DATE(dta_vencimento) AS vencimento,
+        DATE_PART('day', dta_pagamento::timestamp - dta_emissao::timestamp) dias_recebimento,
+        CASE 
+            WHEN situacao='Aberto' AND DATE(dta_vencimento) < CURRENT_DATE then 'S'
+            ELSE 'N'
+        END inadimplente,
         situacao,
         tipo_de_lancamento,
         valor
@@ -26,6 +34,8 @@ SELECT
     b.pagamento,
     b.cancelamento,
     b.vencimento,
+    b.dias_recebimento,
+    b.inadimplente,
     s.codigo AS situacao_codigo,
     tl.codigo AS tipo_de_lancamento_codigo,
     b.valor
