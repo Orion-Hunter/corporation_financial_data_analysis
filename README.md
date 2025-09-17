@@ -26,7 +26,7 @@
 
 * 🟦 **dbt** — modelagem e ingestão
 * 🐘 **Postgres** — Data Lake / Data Warehouse (DataLakehouse)
-* 🐳 **Docker** — ambiente local reproducível
+* 🐳 **Docker** — para criar instância do Postgres
 * 📊 **Power BI** — camada de visualização e análise
 
 ---
@@ -55,10 +55,34 @@
 ## ⚙️ Requisitos (locais)
 
 * 🐳 Docker & Docker Compose
-* 🟦 `dbt-core` + adapter (ex.: `dbt-postgres`) se rodar local sem container
-* 🐍 Python 3.8+ (se usar scripts auxiliares)
+* 🟦 `dbt-core` + adapter (ex.: `dbt-postgres`) 
+* 🐍 Python 3.8+ (se usar scripts auxiliares) e Poetry
 * 🌱 Git
 
+---
+## 📌 Instruções para criar uma instância postgres com Docker
+
+Executar o comando:
+
+```bash 
+docker compose up -d
+```
+
+---
+
+## 📌 Criar ambiente virtual com poetry e instalar dependências
+
+Com o poetry instalado na máquina, executar o comando:
+
+```bash 
+poetry install
+```
+
+Para executar os demais comandos, ativar o ambiente virtual criado:
+
+```bash
+poetry shell
+```
 ---
 
 ## 🧩 Seeds (Bronze)
@@ -71,9 +95,17 @@ dbt seed --select titulos
 
 ---
 
-## 📊 Documentação (dbt docs)
+## 🧩 Layers (Silver and Gold)
 
-* Documente modelos e colunas em `schema.yml` com `description`.
+Exemplo de comando para carregar os models nas camadas Silver e Gold:
+
+```bash 
+dbt run 
+```
+---
+
+
+## 📊 Documentação (dbt docs)
 
 Gerar e servir a documentação:
 
